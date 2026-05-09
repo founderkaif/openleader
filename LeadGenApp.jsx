@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 
 const PRESET_COUNTS = [10, 50, 100, 200, 500, 1000];
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "";
 
 const STATUS = {
   IDLE: "idle",
@@ -410,7 +411,7 @@ export default function LeadGenApp() {
     addLog("Launching Chromium and opening Google Maps...");
 
     try {
-      const response = await fetch("/api/scrape", {
+      const response = await fetch(`${API_BASE_URL}/api/scrape`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -446,7 +447,7 @@ export default function LeadGenApp() {
   const handleStop = async () => {
     clearInterval(timerRef.current);
     try {
-      await fetch("/api/stop", { method: "POST" });
+      await fetch(`${API_BASE_URL}/api/stop`, { method: "POST" });
       addLog("⏹ Scraping stopped by user.");
     } catch (_err) {
       addLog("[warn] Could not stop scrape process.");

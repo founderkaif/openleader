@@ -5,11 +5,16 @@ import { promises as fs } from "node:fs";
 import path from "node:path";
 
 const app = express();
-const PORT = 8787;
+const PORT = Number(process.env.PORT || 8787);
 const ROOT = process.cwd();
 const OUTPUT_DIR = path.join(ROOT, "leads_output");
+const FRONTEND_ORIGIN = process.env.FRONTEND_ORIGIN || "*";
 
-app.use(cors());
+app.use(
+  cors({
+    origin: FRONTEND_ORIGIN === "*" ? true : FRONTEND_ORIGIN,
+  })
+);
 app.use(express.json());
 
 let activeProcess = null;
