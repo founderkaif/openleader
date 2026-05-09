@@ -10,6 +10,7 @@ import argparse
 import asyncio
 import csv
 import json
+import os
 import re
 from datetime import datetime
 from pathlib import Path
@@ -197,8 +198,11 @@ async def run_scraper(
     leads = []
     search_url = GMAPS_URL.format(query=query.replace(" ", "+"))
 
+    is_server = os.environ.get("RENDER") == "true" or os.environ.get("HEADLESS", "").lower() in ("1", "true", "yes")
+    launch_args = ["--no-sandbox", "--disable-setuid-sandbox"] if is_server else ["--start-maximized"]
+
     async with async_playwright() as pw:
-        browser = await pw.chromium.launch(headless=False, args=["--start-maximized"])
+        browser = await pw.chromium.launch(headless=is_server, args=launch_args)
         context = await browser.new_context(
             viewport={"width": 1280, "height": 900},
             user_agent=(
