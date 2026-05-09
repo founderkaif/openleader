@@ -1,0 +1,81 @@
+:root {
+  --font-sans: Inter, Segoe UI, Roboto, Arial, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  --border-radius-md: 10px;
+  --border-radius-lg: 14px;
+
+  --color-background-primary: #0b1020;
+  --color-background-secondary: #141b34;
+  --color-background-info: #132846;
+  --color-background-success: #153828;
+  --color-background-warning: #3b2b0f;
+  --color-background-danger: #3f1720;
+
+  --color-text-primary: #eef2ff;
+  --color-text-secondary: #a7b0d1;
+  --color-text-tertiary: #7d86ab;
+  --color-text-info: #7dc4ff;
+  --color-text-success: #77e0a5;
+  --color-text-warning: #ffd478;
+  --color-text-danger: #ff9aad;
+
+  --color-border-tertiary: #2c365c;
+  --color-border-info: #2e6ea7;
+  --color-border-success: #2b8055;
+  --color-border-warning: #a37925;
+  --color-border-danger: #9b2f46;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: radial-gradient(circle at top, #1a2550 0%, #090d1a 45%, #060910 100%);
+  color: var(--color-text-primary);
+  min-height: 100vh;
+}
+
+#root {
+  min-height: 100vh;
+  padding: 20px;
+}
+
+input,
+button,
+select {
+  font-family: inherit;
+}
+
+input {
+  background: #0f1630;
+  color: var(--color-text-primary);
+  border: 1px solid var(--color-border-tertiary);
+  border-radius: var(--border-radius-md);
+}
+
+input:focus {
+  outline: none;
+  border-color: var(--color-border-info);
+  box-shadow: 0 0 0 2px rgba(46, 110, 167, 0.2);
+}
+
+button {
+  transition: all 0.15s ease;
+}
+
+button:hover {
+  filter: brightness(1.1);
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
